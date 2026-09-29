@@ -59,6 +59,7 @@
     border: 1.5px solid rgba(140, 200, 255, 0.3);
     font-weight: 500;
   }
+  .big[hidden] { display: none; }
   input[type=file] { display: none; }
 
   .bubble { font-size: 64px; margin: 10px 0; }
@@ -176,7 +177,8 @@
 <div class="screen" id="s-error">
   <div class="bubble">🙈</div>
   <div class="err" id="err-text"></div>
-  <label class="big" for="file" data-t="cap.retry"></label>
+  <button class="big" id="b-resend" hidden data-t="cap.resend"></button>
+  <label class="big" id="l-retry" for="file" data-t="cap.retry"></label>
 </div>
 
 <script src="/assets/i18n.js"></script>
@@ -453,6 +455,8 @@
     var file = this.files && this.files[0];
     this.value = '';
     if (!file || !manifest) return;
+    document.getElementById('b-resend').hidden = true;      // новая рыбка —
+    document.getElementById('l-retry').classList.remove('ghost');  // старую не шлём
     show('s-busy');
     loadBitmap(file).then(window.handlePhoto, function () {
       document.getElementById('err-text').textContent = I18N.t('cap.err.photo');
@@ -475,18 +479,35 @@
         texture: result.boost ? result.boost.bake().texture : result.texture
       })
     }).then(function (r) {
-      if (!r.ok) throw new Error(I18N.t('cap.err.status', { code: r.status }));
+      if (!r.ok) throw new Error(sendError(r.status));
       return r.json();
+    }, function () {
+      throw new Error(I18N.t('cap.err.busy'));   // сеть оборвалась
     }).then(function (r) {
       show('s-done');
       tellTank();
       return r;
     }, function (err) {
-      document.getElementById('err-text').textContent = I18N.t('cap.err.send', { msg: err.message || err });
+      // рыбка уже готова — переснимать лист не надо, хватит отправить снова
+      document.getElementById('err-text').textContent = err.message || String(err);
+      document.getElementById('b-resend').hidden = false;
+      document.getElementById('l-retry').classList.add('ghost');
       show('s-error');
       throw err;
     });
   };
+
+  // Коды ответа сервера — словами, понятными ребёнку и родителю.
+  function sendError(code) {
+    if (code === 409) return I18N.t('cap.err.full');
+    if (code === 413) return I18N.t('cap.err.heavy');
+    if (code === 507) return I18N.t('cap.err.disk');
+    if (code === 404) return I18N.t('cap.err.gone');
+    if (code >= 500) return I18N.t('cap.err.busy');
+    return I18N.t('cap.err.send', { msg: I18N.t('cap.err.status', { code: code }) });
+  }
+
+  document.getElementById('b-resend').addEventListener('click', function () { window.releaseFish(); });
 
   document.getElementById('b-release').addEventListener('click', function () { window.releaseFish(); });
 })();

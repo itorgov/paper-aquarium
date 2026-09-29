@@ -207,6 +207,12 @@
       'cap.err.status': 'Сервер ответил {code}',
       'cap.err.markers': 'Нашёл меток: {n} из 4. Сфотографируй весь лист целиком, при хорошем свете и без бликов — все четыре чёрных квадрата должны быть в кадре.',
       'cap.err.send': 'Не получилось отправить: {msg}',
+      'cap.resend': 'Отправить снова',
+      'cap.err.full': 'В аквариуме тесно — там уже живёт максимум рыбок. Попроси взрослого выпустить кого-нибудь в управлении аквариумом и отправь снова.',
+      'cap.err.heavy': 'Картинка получилась слишком тяжёлой. Сфотографируй лист ещё раз.',
+      'cap.err.disk': 'На сервере закончилось место. Мы уже разбираемся — попробуй чуть позже.',
+      'cap.err.gone': 'Этого аквариума больше нет. Проверь ссылку или QR-код.',
+      'cap.err.busy': 'Аквариум сейчас не отвечает. Подожди минутку и отправь снова.',
 
       // ── управление ──
       'adm.doctitle': 'Аквариум — управление рыбками',
@@ -452,6 +458,12 @@
       'cap.err.status': 'The server answered {code}',
       'cap.err.markers': 'Found {n} markers out of 4. Photograph the whole sheet, in good light and without glare — all four black squares have to be in the frame.',
       'cap.err.send': 'Sending failed: {msg}',
+      'cap.resend': 'Send again',
+      'cap.err.full': 'The aquarium is full — it already has as many fish as it can hold. Ask a grown-up to release one in the aquarium settings, then send again.',
+      'cap.err.heavy': 'The picture came out too heavy. Photograph the sheet again.',
+      'cap.err.disk': 'The server ran out of space. We are on it — try again a bit later.',
+      'cap.err.gone': 'This aquarium no longer exists. Check the link or the QR code.',
+      'cap.err.busy': 'The aquarium is not answering right now. Wait a minute and send again.',
 
       'adm.doctitle': 'Aquarium — managing the fish',
       'adm.title': 'management',
@@ -694,6 +706,12 @@
       'cap.err.status': 'Serwer odpowiedział {code}',
       'cap.err.markers': 'Znalazłem {n} znaczniki z 4. Sfotografuj całą kartkę, przy dobrym świetle i bez odblasków — wszystkie cztery czarne kwadraty muszą być w kadrze.',
       'cap.err.send': 'Nie udało się wysłać: {msg}',
+      'cap.resend': 'Wyślij jeszcze raz',
+      'cap.err.full': 'W akwarium jest ciasno — pływa w nim już najwięcej rybek, ile się da. Poproś dorosłego, żeby wypuścił którąś w ustawieniach akwarium, i wyślij jeszcze raz.',
+      'cap.err.heavy': 'Obrazek wyszedł za ciężki. Zrób zdjęcie kartki jeszcze raz.',
+      'cap.err.disk': 'Na serwerze skończyło się miejsce. Już się tym zajmujemy — spróbuj trochę później.',
+      'cap.err.gone': 'Tego akwarium już nie ma. Sprawdź link albo kod QR.',
+      'cap.err.busy': 'Akwarium teraz nie odpowiada. Poczekaj chwilę i wyślij jeszcze raz.',
 
       'adm.doctitle': 'Akwarium — zarządzanie rybkami',
       'adm.title': 'zarządzanie',
