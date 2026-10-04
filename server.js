@@ -1275,7 +1275,10 @@ function coloringPdf(req) {
 }
 
 http.createServer((req, res) => {
-  const url = decodeURIComponent(req.url.split('?')[0]);
+  // битый %-escape от сканеров (`/%`, `/%E0%A4%A`) ронял весь процесс
+  let url;
+  try { url = decodeURIComponent(req.url.split('?')[0]); }
+  catch { res.writeHead(400); return res.end(); }
 
   if (url.startsWith('/api/')) return handleApi(req, res, url);
 
